@@ -33,8 +33,13 @@ class EventForm extends React.Component {
     });
   }
 
-  componentWillReceiveProps({ event }) {
-    this.setState({ event });
+  static getDerivedStateFromProps(props, state) {
+    if (props.event.id !== state.event.id) {
+      return {
+        event: props.event
+      };
+    }
+    return null;
   }
 
   updateEvent(key, value) {
