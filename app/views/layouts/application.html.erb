@@ -11,6 +11,34 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div id="root">
+      <div>
+        <div>
+          <header>
+            <h1><a href="/events">Event Manager</a></h1>
+          </header>
+          <div class="grid">
+            <section class="eventList">
+              <h2>Events<a href="/events/new">New Event</a></h2>
+              <input class="search" placeholder="Search" type="text">
+              <ul>
+                <% Event.published.order(event_date: :desc).each do |event| %>
+                  <li><a href=<%= event_path(event) %>><%= event.event_date %> - <%= event.event_type %></a></li>
+                <% end %>
+              </ul>
+            </section>
+            <%= yield %>
+          </div>
+        </div>
+        <div class="s-alert-wrapper" id="alert">
+          <% if notice.present? %>
+            <div class="s-alert-box s-alert-success s-alert-top-right s-alert-is-effect s-alert-effect-scale s-alert-show" style="top: 75px; right: 30px;">
+              <div class="s-alert-box-inner"><%= notice %></div>
+              <span class="s-alert-close" onclick="document.getElementById('alert').remove();"></span>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

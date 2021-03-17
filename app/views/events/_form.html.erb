@@ -1,0 +1,46 @@
+<% if event.errors.any? %>
+  <div class="errors" id="error_explanation">
+    <h3>The following errors prohibited the event from being saved:</h3>
+    <ul>
+      <% event.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with(model: event) do |form| %>
+  <div>
+    <%= form.label :event_type do raw('<strong>Type:</strong>') end %>
+    <%= form.text_field :event_type %>
+  </div>
+
+  <div>
+    <%= form.label :event_date do raw('<strong>Date:</strong>') end %>
+    <%= form.date_field :event_date %>
+  </div>
+
+  <div>
+    <%= form.label :title do raw('<strong>Title:</strong>') end %>
+    <%= form.text_area :title %>
+  </div>
+
+  <div>
+    <%= form.label :speaker do raw('<strong>Speakers:</strong>') end %>
+    <%= form.text_field :speaker %>
+  </div>
+
+  <div>
+    <%= form.label :host do raw('<strong>Hosts:</strong>') end %>
+    <%= form.text_field :host %>
+  </div>
+
+  <div>
+    <%= form.label :published do raw('<strong>Published:</strong>') end %>
+    <%= form.check_box :published %>
+  </div>
+
+  <div class="form-actions">
+    <%= form.button 'Save' %><a href="/events">Cancel</a>
+  </div>
+<% end %>

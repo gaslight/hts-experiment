@@ -76,7 +76,7 @@ RSpec.describe 'Event management', type: :system do
     it 'succeeds' do
       visit "/events/#{a_useless_event.id}"
 
-      click_button 'Delete'
+      click_on 'Delete'
       page.driver.browser.switch_to.alert.accept
 
       expect(page).to have_text('Event deleted successfully')
