@@ -1,0 +1,11 @@
+<div class="eventContainer">
+  <h2><%= @event.event_date %> - <%= @event.event_type %> <a href=<%= edit_event_path(@event) %>>Edit</a><%= link_to 'Delete', event_path(@event), method: :delete, data: { confirm: 'Are you sure?' } %></h2>
+  <ul>
+    <li><strong>Type:</strong> <%= @event.event_type %></li>
+    <li><strong>Date:</strong> <%= @event.event_date %></li>
+    <li><strong>Title:</strong> <%= @event.title %></li>
+    <li><strong>Speaker:</strong> <%= @event.speaker %></li>
+    <li><strong>Host:</strong> <%= @event.host %></li>
+    <li><strong>Published:</strong> <%= @event.published ? 'yes' : 'no' %></li>
+  </ul>
+</div>

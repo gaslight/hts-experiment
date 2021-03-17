@@ -13,3 +13,636 @@
  *= require_tree .
  *= require_self
  */
+
+ @import url('https://fonts.googleapis.com/css?family=Roboto:400,700,300,400italic');
+ @import url('https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700');
+
+ .s-alert-box,
+.s-alert-box * {
+    box-sizing: border-box;
+}
+
+.s-alert-box {
+    position: fixed;
+    background: rgba(42,45,50,0.85);
+    padding: 22px;
+    line-height: 1.4;
+    z-index: 1000;
+    pointer-events: none;
+    color: rgba(250,251,255,0.95);
+    font-size: 100%;
+    font-family: 'Helvetica Neue', 'Segoe UI', Helvetica, Arial, sans-serif;
+    max-width: 300px;
+    transition: top .4s, bottom .4s;
+}
+
+.s-alert-box.s-alert-show {
+    pointer-events: auto;
+}
+
+.s-alert-box a {
+    color: inherit;
+    opacity: 0.7;
+    font-weight: 700;
+}
+
+.s-alert-box a:hover,
+.s-alert-box a:focus {
+    opacity: 1;
+}
+
+.s-alert-box p {
+    margin: 0;
+}
+
+.s-alert-box.s-alert-show,
+.s-alert-box.s-alert-visible {
+    pointer-events: auto;
+}
+
+.s-alert-close {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    overflow: hidden;
+    text-indent: 100%;
+    cursor: pointer;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.s-alert-close:hover,
+.s-alert-close:focus {
+    outline: none;
+}
+
+.s-alert-close::before,
+.s-alert-close::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 60%;
+    top: 50%;
+    left: 50%;
+    background: #fff;
+}
+
+.s-alert-close:hover::before,
+.s-alert-close:hover::after {
+    background: #fff;
+}
+
+.s-alert-close::before {
+    transform: translate(-50%,-50%) rotate(45deg);
+}
+
+.s-alert-close::after {
+    transform: translate(-50%,-50%) rotate(-45deg);
+}
+
+/* positions */
+
+.s-alert-bottom-left {
+    top: auto;
+    right: auto;
+    bottom: 30px;
+    left: 30px;
+}
+
+.s-alert-top-left {
+    top: 30px;
+    right: auto;
+    bottom: auto;
+    left: 30px;
+}
+
+.s-alert-top-right {
+    top: 30px;
+    right: 30px;
+    bottom: auto;
+    left: auto;
+}
+
+.s-alert-bottom-right { /*default*/
+    top: auto;
+    right: 30px;
+    bottom: 30px;
+    left: auto;
+}
+
+.s-alert-bottom {
+    width: 100%;
+    max-width: 100%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: auto;
+}
+
+.s-alert-top {
+    width: 100%;
+    max-width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: auto;
+}
+
+/* conditions */
+
+.s-alert-info {
+    background: #00A2D3;
+    color: #fff;
+}
+
+.s-alert-success {
+    background: #27AE60;
+    color: #fff;
+}
+
+.s-alert-warning {
+    background: #F1C40F;
+    color: #fff;
+}
+
+.s-alert-error {
+    background: #E74C3C;
+    color: #fff;
+}
+
+[class^="s-alert-effect-"].s-alert-hide,
+[class*=" s-alert-effect-"].s-alert-hide {
+    -webkit-animation-direction: reverse;
+    animation-direction: reverse;
+}
+
+/* height measurement helper */
+
+.s-alert-box-height {
+    visibility: hidden;
+    position: fixed;
+}
+
+.s-alert-effect-scale a {
+    color: #fff;
+}
+
+.s-alert-effect-scale a:hover,
+.s-alert-effect-scale a:focus {
+    color: #fff;
+}
+
+.s-alert-effect-scale .s-alert-close::before,
+.s-alert-effect-scale .s-alert-close::after {
+    background: #fff;
+}
+
+.s-alert-effect-scale .s-alert-close:hover::before,
+.s-alert-effect-scale .s-alert-close:hover::after {
+    background: #fff;
+}
+
+.s-alert-effect-scale.s-alert-show,
+.s-alert-effect-scale.s-alert-hide {
+    -webkit-animation-name: animScale;
+    animation-name: animScale;
+    -webkit-animation-duration: 0.25s;
+    animation-duration: 0.25s;
+}
+
+@-webkit-keyframes animScale {
+    0% { opacity: 0; -webkit-transform: translate3d(0,40px,0) scale3d(0.1,0.6,1); }
+    100% { opacity: 1; -webkit-transform: translate3d(0,0,0) scale3d(1,1,1); }
+}
+
+@keyframes animScale {
+    0% { opacity: 0; transform: translate3d(0,40px,0) scale3d(0.1,0.6,1); }
+    100% { opacity: 1; transform: translate3d(0,0,0) scale3d(1,1,1); }
+}
+
+/*!
+ * Pikaday
+ * Copyright © 2014 David Bushell | BSD & MIT license | https://dbushell.com/
+ */
+
+.pika-single {
+    z-index: 9999;
+    display: block;
+    position: relative;
+    color: #333;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-bottom-color: #bbb;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/*
+clear child float (pika-lendar), using the famous micro clearfix hack
+http://nicolasgallagher.com/micro-clearfix-hack/
+*/
+
+.pika-single:before,
+.pika-single:after {
+    content: " ";
+    display: table;
+}
+
+.pika-single:after { clear: both }
+
+.pika-single.is-hidden {
+    display: none;
+}
+
+.pika-single.is-bound {
+    position: absolute;
+    box-shadow: 0 5px 15px -5px rgba(0,0,0,.5);
+}
+
+.pika-lendar {
+    float: left;
+    width: 240px;
+    margin: 8px;
+}
+
+.pika-title {
+    position: relative;
+    text-align: center;
+}
+
+.pika-label {
+    display: inline-block;
+    position: relative;
+    z-index: 9999;
+    overflow: hidden;
+    margin: 0;
+    padding: 5px 3px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: bold;
+    background-color: #fff;
+}
+
+.pika-title select {
+    cursor: pointer;
+    position: absolute;
+    z-index: 9998;
+    margin: 0;
+    left: 0;
+    top: 5px;
+    opacity: 0;
+}
+
+.pika-prev,
+.pika-next {
+    display: block;
+    cursor: pointer;
+    position: relative;
+    outline: none;
+    border: 0;
+    padding: 0;
+    width: 20px;
+    height: 30px;
+    /* hide text using text-indent trick, using width value (it's enough) */
+    text-indent: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    background-color: transparent;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 75% 75%;
+    opacity: .5;
+}
+
+.pika-prev:hover,
+.pika-next:hover {
+    opacity: 1;
+}
+
+.pika-prev,
+.is-rtl .pika-next {
+    float: left;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAeCAYAAAAsEj5rAAAAUklEQVR42u3VMQoAIBADQf8Pgj+OD9hG2CtONJB2ymQkKe0HbwAP0xucDiQWARITIDEBEnMgMQ8S8+AqBIl6kKgHiXqQqAeJepBo/z38J/U0uAHlaBkBl9I4GwAAAABJRU5ErkJggg==');
+}
+
+.pika-next,
+.is-rtl .pika-prev {
+    float: right;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAeCAYAAAAsEj5rAAAAU0lEQVR42u3VOwoAMAgE0dwfAnNjU26bYkBCFGwfiL9VVWoO+BJ4Gf3gtsEKKoFBNTCoCAYVwaAiGNQGMUHMkjGbgjk2mIONuXo0nC8XnCf1JXgArVIZAQh5TKYAAAAASUVORK5CYII=');
+}
+
+.pika-prev.is-disabled,
+.pika-next.is-disabled {
+    cursor: default;
+    opacity: .2;
+}
+
+.pika-select {
+    display: inline-block;
+}
+
+.pika-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 0;
+}
+
+.pika-table th,
+.pika-table td {
+    width: 14.285714285714286%;
+    padding: 0;
+}
+
+.pika-table th {
+    color: #999;
+    font-size: 12px;
+    line-height: 25px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.pika-button {
+    cursor: pointer;
+    display: block;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    outline: none;
+    border: 0;
+    margin: 0;
+    width: 100%;
+    padding: 5px;
+    color: #666;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: right;
+    background: #f5f5f5;
+    height: auto;
+    height: initial;
+}
+
+.pika-week {
+    font-size: 11px;
+    color: #999;
+}
+
+.is-today .pika-button {
+    color: #33aaff;
+    font-weight: bold;
+}
+
+.is-selected .pika-button,
+.has-event .pika-button {
+    color: #fff;
+    font-weight: bold;
+    background: #33aaff;
+    box-shadow: inset 0 1px 3px #178fe5;
+    border-radius: 3px;
+}
+
+.has-event .pika-button {
+    background: #005da9;
+    box-shadow: inset 0 1px 3px #0076c9;
+}
+
+.is-disabled .pika-button,
+.is-inrange .pika-button {
+    background: #D5E9F7;
+}
+
+.is-startrange .pika-button {
+    color: #fff;
+    background: #6CB31D;
+    box-shadow: none;
+    border-radius: 3px;
+}
+
+.is-endrange .pika-button {
+    color: #fff;
+    background: #33aaff;
+    box-shadow: none;
+    border-radius: 3px;
+}
+
+.is-disabled .pika-button {
+    pointer-events: none;
+    cursor: default;
+    color: #999;
+    opacity: .3;
+}
+
+.is-outside-current-month .pika-button {
+    color: #999;
+    opacity: .3;
+}
+
+.is-selection-disabled {
+    pointer-events: none;
+    cursor: default;
+}
+
+.pika-button:hover,
+.pika-row.pick-whole-week:hover .pika-button {
+    color: #fff;
+    background: #ff8000;
+    box-shadow: none;
+    border-radius: 3px;
+}
+
+/* styling for abbr */
+
+.pika-table abbr {
+    border-bottom: none;
+    cursor: help;
+}
+
+body,
+html,
+div,
+blockquote,
+img,
+label,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+form,
+a,
+fieldset,
+input,
+th,
+td {
+  margin: 0;
+  padding: 0;
+}
+ul,
+ol {
+  list-style: none;
+}
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  line-height: 28px;
+}
+header {
+  background: #f57011;
+  height: 60px;
+}
+header h1 a{
+  display: inline-block;
+  font-family: "Maven Pro", sans-serif;
+  font-size: 28px;
+  font-weight: 500;
+  color: white;
+  padding: 14px 5%;
+  text-decoration: none;
+}
+header h1 a:hover {
+  text-decoration: underline;
+}
+.grid {
+  display: grid;
+  grid-gap: 50px;
+  grid-template-columns: 25% auto;
+  margin: 25px auto;
+  width: 90%;
+  height: calc(100vh - 145px);
+}
+.eventList {
+  background: #f6f6f6;
+  padding: 16px;
+}
+.eventList h2 {
+  font-size: 20px;
+  padding: 8px 6px 10px;
+}
+.eventContainer {
+  font-size: 15px;
+  line-height: 35px;
+}
+.eventContainer h2 {
+  margin-bottom: 10px;
+}
+.eventList li:hover,
+a.active {
+  background: #f8e5ce;
+}
+.eventList a {
+  display: block;
+  color: black;
+  text-decoration: none;
+  border-bottom: 1px solid #dddddd;
+  padding: 8px 6px 10px;
+  outline: 0;
+}
+.eventList h2 > a {
+  color: #236fff;
+  font-size: 15px;
+  float: right;
+  font-weight: normal;
+  border-bottom: none;
+  padding: 0px;
+}
+h2 a:hover {
+  text-decoration: underline;
+}
+.eventForm {
+  margin-top: 15px;
+}
+label > strong {
+  display: inline-block;
+  vertical-align: top;
+  text-align: right;
+  width: 100px;
+  margin-right: 6px;
+  font-size: 15px;
+}
+input,
+textarea {
+  padding: 2px 0 3px 3px;
+  width: 400px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}
+input[type="checkbox"] {
+  width: 13px;
+}
+button[type="submit"] {
+  background: #f57011;
+  border: none;
+  padding: 5px 25px 8px;
+  font-weight: 500;
+  color: white;
+  cursor: pointer;
+  margin: 10px 0 0 106px;
+}
+.errors {
+  border: 1px solid red;
+  border-radius: 5px;
+  margin: 20px 0 35px 0;
+  width: 513px;
+}
+.errors h3 {
+  background: red;
+  color: white;
+  padding: 10px;
+  font-size: 15px;
+}
+.errors ul li {
+  list-style-type: none;
+  margin: 0;
+  padding: 8px 0 8px 10px;
+  border-top: solid 1px pink;
+  font-size: 12px;
+  font-weight: 0.9;
+}
+button.delete {
+  background: none !important;
+  border: none;
+  padding: 0 !important;
+  margin-left: 10px;
+  cursor: pointer;
+  color: #236fff;
+  font-size: 15px;
+  font-weight: normal;
+  margin: 3px 0 0 0;
+  text-decoration: none;
+}
+button.delete:hover {
+  text-decoration: underline;
+}
+h2 a {
+  color: #236fff;
+  font-size: 15px;
+  font-weight: normal;
+  margin: 3px 12px 0 12px;
+  text-decoration: none;
+}
+h2 a:hover {
+  text-decoration: underline;
+}
+.form-actions a {
+  color: #236fff;
+  font-size: 15px;
+  margin: 3px 12px 0 12px;
+  text-decoration: none;
+}
+.form-actions a:hover {
+  text-decoration: underline;
+}
+input.search {
+  width: 92%;
+  margin: 15px 2px;
+  padding: 4px 0 6px 6px;
+}
