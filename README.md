@@ -1,28 +1,51 @@
-# Creating a Simple CRUD App with Rails and React
+# Rails: The HTS Experiment
 
-This is the code repository to accompany a tutorial on how to create a Rails API then, using the Webpacker gem, build a React front-end to consume it.
+This is the code repository for a simple Event tracking [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete)
+application implemented in [Ruby on Rails](https://rubyonrails.org/) with
+[Hotwire, Turbo and Stimulus](https://turbo.hotwire.dev/). It was forked from
+James Hibbard's excellent [Rails/React tutorial](https://hibbard.eu/rails-react-crud-app/).
 
-Tutorial URL: [https://hibbard.eu/rails-react-crud-app/](https://hibbard.eu/rails-react-crud-app/)
+See the rationale for this experiment on our blog. _(Link to be added upon
+publication of the blog post.)_
+
+The following repo branches are of interest:
+* [fork-point](https://github.com/gaslight/hts-experiment/tree/fork-point):
+where this repo was forked from the upstream repo
+* [rails-non-hts](https://github.com/gaslight/hts-experiment/tree/rails-non-hts):
+the "vanilla" (non-HTS) Rails implementation
+* [rails-with-hts](https://github.com/gaslight/hts-experiment/tree/rails-with-hts):
+the Rails version implemented with Hotware, Turbo and Stimulus
 
 ## Requirements
-
-- [Ruby](https://www.ruby-lang.org/en/downloads/)
-- [Node.js](http://nodejs.org/)
-
-There are instructions for installing both Ruby and Node at the beginning of the tutorial.
+* [Git](https://git-scm.com/)
+* [Ruby](https://www.ruby-lang.org/en/downloads/)
+* [Yarn](https://yarnpkg.com/)
 
 ## Installation
-
-- Clone repo
-- Run `bundle install`
-- Run `yarn install`
-- Run `rake db:create`, `rake db:migrate`, then `rake db:seed`
+With the above listed requirements installed on your system, open a terminal in
+a directory of your choosing and run the following commands:
+```sh
+git clone git@github.com:gaslight/hts-experiment.git
+cd hts-experiment
+./bin/setup
+```
 
 ## Running
+* Start the Rails server with the command: `./bin/rails s`
+* In a second terminal start the wepback-dev-server with the command:
+`./bin/webpack-dev-server`
+* Clink on this link: http://localhost:3000/events/
 
-- Start the Rails server with `rails s`
-- In a second terminal start the wepback-dev-server with `./bin/webpack-dev-server`
-- Hit http://localhost:3000/events/
+## Contributing
+GitHub's guide for [Contributing to Open Source](https://guides.github.com/activities/contributing-to-open-source/)
+offer's the best advice.
+
+### tl;dr
+1. [Fork it](https://help.github.com/articles/fork-a-repo/)!
+1. Create your feature branch: `git checkout -b cool-new-feature`
+1. Commit your changes: `git commit -am 'Added a cool feature'`
+1. Push to the branch: `git push origin cool-new-feature`
+1. [Create new Pull Request](https://help.github.com/articles/creating-a-pull-request/).
 
 ## License
 
