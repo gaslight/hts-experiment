@@ -5,14 +5,17 @@ application implemented in [Ruby on Rails](https://rubyonrails.org/) with
 [Hotwire, Turbo and Stimulus](https://turbo.hotwire.dev/). It was forked from
 James Hibbard's excellent [Rails/React tutorial](https://hibbard.eu/rails-react-crud-app/).
 
-See the rationale for this experiment on our blog. _(Link to be added upon
-publication of the blog post.)_
+See the rationale for this experiment on our [blog](https://teamgaslight.com/blog/Rails-The-HTS-Experiment).
 
 The following repo branches are of interest:
 * [fork-point](https://github.com/gaslight/hts-experiment/tree/fork-point):
 where this repo was forked from the upstream repo
+* [react-current](https://github.com/gaslight/hts-experiment/tree/react-current):
+the upgraded React implementation
 * [rails-non-hts](https://github.com/gaslight/hts-experiment/tree/rails-non-hts):
 the "vanilla" (non-HTS) Rails implementation
+
+Eventually, this branch will contain the completed HTS implementation:
 * [rails-with-hts](https://github.com/gaslight/hts-experiment/tree/rails-with-hts):
 the Rails version implemented with Hotware, Turbo and Stimulus
 
