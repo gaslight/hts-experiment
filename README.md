@@ -21,6 +21,7 @@ the Rails version implemented with Hotware, Turbo and Stimulus
 
 ## Requirements
 * [Git](https://git-scm.com/)
+* [Redis](https://redis.io/)
 * [Ruby](https://www.ruby-lang.org/en/downloads/)
 * [Yarn](https://yarnpkg.com/)
 
